@@ -16,18 +16,30 @@ class MergeAlgorithm
         int[] merge = new int[M + N];//병합된 배열 담을 그릇
         //first와 second가 들어갈 내용이니 M+N크기의 배열. 5개Length를 가짐
         int i = 0; int j = 0; int k = 0;//ijk 관행
-                                //i는 first, j는 second, k는 merge배열의 index
+                                        //i는 first, j는 second, k는 merge배열의 index
 
         //[2]: merge
-        while(i < M && j < N)
-         {
-            if(first[i] <= second[j])
-             {
-                merge[k];
-             }
+        while (i < M && j < N)
+        {
+            if (first[i] <= second[j])//더 작은 값을 merge배열에 저장
+            {
+                merge[k++] = first[i++];
+            }
+            else
+            {
+                merge[k++] = second[j++];
+            }
+            while (i < M)//첫번째 배열이 끝까지 도달할 떄까지
+            {
+                merge[k++] = first[i++];
+            }
+            while (j < N)//두번째 배열이 끝까지 도달할 떄까지
+            {
+                merge[k++] = second[j++];
+            }
         }
         //[3]
-        foreach(var m in merge)
+        foreach (var m in merge)
         {
             Console.WriteLine($"{ m}\t");
            
